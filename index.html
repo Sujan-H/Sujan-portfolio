@@ -1,119 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sujan's personal portfolio website" />
-  <title>Sujan | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptCraft — Website Builder</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <nav class="nav container">
-      <a class="logo" href="#home">Sujan<span>.</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span> PromptCraft</a>
+    <span class="top-note">Your idea, turned into a website</span>
   </header>
 
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-content">
-        <p class="eyebrow">HELLO, WELCOME TO MY PORTFOLIO</p>
-        <h1>Hi, I'm <span>Sujan</span></h1>
-        <h2>Student &amp; Aspiring Web Developer</h2>
-        <p class="intro">I enjoy learning new technologies and building simple, useful digital experiences. Explore my skills, projects and journey below.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View My Work</a>
-          <a class="btn secondary" href="#contact">Contact Me</a>
+  <main class="shell">
+    <section class="intro">
+      <div class="pill"><span></span> SIMPLE AI-STYLE WEBSITE BUILDER</div>
+      <h1>Build a website<br>with <em>one prompt.</em></h1>
+      <p>Describe the website you want. Generate a design, preview it instantly, and download the HTML.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="builder-panel">
+        <label for="prompt">Describe your website</label>
+        <textarea id="prompt" rows="5" placeholder="Example: Create a modern portfolio website for Alex, a photographer. Use a dark theme, show my work, about me and contact sections."></textarea>
+        <div class="examples">
+          <span>Try:</span>
+          <button class="example" data-prompt="Create a modern personal portfolio for Alex, a web developer. Use a dark theme with blue accents. Include about, skills, projects and contact sections.">Portfolio</button>
+          <button class="example" data-prompt="Create a beautiful coffee shop website called Morning Brew. Use warm colors and include menu, about and contact sections.">Coffee shop</button>
+          <button class="example" data-prompt="Create a clean technology company landing page called Nova Tech. Use a blue and white theme with services and contact sections.">Business</button>
         </div>
+        <button class="generate" id="generate"><span>✦</span> Generate website <span class="arrow">→</span></button>
+        <p class="hint">This demo uses built-in layouts and keywords. It does not connect to an external AI service.</p>
       </div>
-      <div class="hero-art" aria-label="Decorative initials">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="initials">B<span>.</span></div>
-        <div class="floating-tag tag-top">Creative</div>
-        <div class="floating-tag tag-bottom">Always Learning</div>
+
+      <div class="preview-panel">
+        <div class="preview-head">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>LIVE PREVIEW</span>
+          <button id="openPreview" title="Open preview in new tab">↗</button>
+        </div>
+        <iframe id="preview" title="Generated website preview"></iframe>
       </div>
     </section>
 
-    <section class="section alt" id="about">
-      <div class="container">
-        <p class="eyebrow">GET TO KNOW ME</p>
-        <h2 class="section-title">About <span>Me</span></h2>
-        <div class="about-card">
-          <div class="about-mark">B.</div>
-          <div>
-            <h3>I'm Sujan</h3>
-            <p>I am a student interested in technology, programming and web development. I like exploring how websites work and improving my skills through practice and projects.</p>
-            <p class="muted">Update this section with your course, college name, interests and career goal.</p>
-          </div>
-        </div>
+    <section class="output-panel">
+      <div>
+        <h2>Your website code</h2>
+        <p>Generate a website to see its HTML here.</p>
       </div>
-    </section>
-
-    <section class="section container" id="skills">
-      <p class="eyebrow">WHAT I'M LEARNING</p>
-      <h2 class="section-title">My <span>Skills</span></h2>
-      <p class="section-lead">Add or remove skills to match the technologies you know.</p>
-      <div class="skill-grid">
-        <div class="skill"><span>01</span><h3>HTML</h3><p>Building the structure of web pages.</p></div>
-        <div class="skill"><span>02</span><h3>CSS</h3><p>Styling pages and creating responsive layouts.</p></div>
-        <div class="skill"><span>03</span><h3>JavaScript</h3><p>Adding interaction and dynamic behaviour.</p></div>
-        <div class="skill"><span>04</span><h3>Python</h3><p>Learning programming and problem-solving.</p></div>
+      <div class="output-actions">
+        <button class="secondary" id="copyCode" disabled>Copy HTML</button>
+        <button class="download" id="downloadCode" disabled>↓ Download HTML</button>
       </div>
+      <pre><code id="codeOutput">&lt;!-- Your generated website HTML will appear here. --&gt;</code></pre>
     </section>
-
-    <section class="section alt" id="projects">
-      <div class="container">
-        <p class="eyebrow">WHAT I'VE BEEN WORKING ON</p>
-        <h2 class="section-title">My <span>Projects</span></h2>
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-number">PROJECT 01</div>
-            <h3>Personal Portfolio Website</h3>
-            <p>A personal website to introduce myself, highlight my skills and share my projects and contact information.</p>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            <a href="#contact" class="text-link">Ask me about this project ↗</a>
-          </article>
-          <article class="project-card">
-            <div class="project-number">PROJECT 02</div>
-            <h3>Student Management System</h3>
-            <p>A simple system concept for organizing student details such as names, courses and records.</p>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            <a href="#contact" class="text-link">Ask me about this project ↗</a>
-          </article>
-          <article class="project-card">
-            <div class="project-number">PROJECT 03</div>
-            <h3>To-Do List Application</h3>
-            <p>A task-list app concept that helps users add tasks, mark them as complete and stay organized.</p>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            <a href="#contact" class="text-link">Ask me about this project ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="contact">
-      <p class="eyebrow">LET'S CONNECT</p>
-      <h2 class="section-title">Contact <span>Me</span></h2>
-      <div class="contact-card">
-        <div><h3>Have an opportunity or idea?</h3><p>I'd be happy to connect. Replace the sample email and profile links with your own details.</p></div>
-        <div class="contact-links">
-          <a href="mailto:your-email@example.com">your-email@example.com</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn profile ↗</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub profile ↗</a>
-        </div>
-      </div>
-    </section>
+    <footer>Made for turning simple ideas into web pages · HTML, CSS &amp; JavaScript</footer>
   </main>
-
-  <footer><p>© <span id="year"></span> Sujan. Made with HTML, CSS &amp; JavaScript.</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
